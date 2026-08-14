@@ -113,43 +113,35 @@
             <div class="panel-heading">
               <div>
                 <p class="eyebrow">FLASHCARDS</p>
-                <h2 id="flashcardHeading">翻一張，記一個</h2>
+                <h2 id="flashcardHeading">設定這次閃卡練習</h2>
               </div>
-              <div class="inline-actions">
-                <label class="compact-select">正面
+            </div>
+            <div id="flashcardEmpty" class="empty-state" hidden>目前範圍沒有可練習的單字。</div>
+            <div id="flashcardSetup" class="session-setup-card">
+              <div class="session-scope-summary">
+                <span>目前範圍</span>
+                <strong id="flashcardSetupCount">0 個單字</strong>
+                <p id="flashcardSetupScope"></p>
+              </div>
+              <div class="flashcard-setting-grid">
+                <label class="setup-field">卡片正面
                   <select id="flashcardFront">
                     <option value="english">英文</option>
                     <option value="chinese">中文</option>
                   </select>
                 </label>
-                <button class="ghost-button" id="shuffleFlashcards" type="button">隨機排列</button>
+                <fieldset class="setup-field">
+                  <legend>排列方式</legend>
+                  <div class="setup-choice" id="flashcardOrderOptions">
+                    <button class="is-active" data-order="ordered" type="button">依教材順序</button>
+                    <button data-order="random" type="button">隨機排列</button>
+                  </div>
+                </fieldset>
               </div>
-            </div>
-            <div id="flashcardEmpty" class="empty-state" hidden>目前範圍沒有可練習的單字。</div>
-            <div id="flashcardStage" class="flashcard-stage">
-              <div class="progress-row">
-                <span id="flashcardProgressLabel">第 1 張，共 1 張</span>
-                <span id="flashcardResumeLabel" class="resume-label" aria-live="polite"></span>
-                <span id="flashcardMasteryLabel">0 個已熟悉</span>
-              </div>
-              <div class="progress-track"><span id="flashcardProgressBar"></span></div>
-              <button id="flashcard" class="flashcard" type="button" aria-label="翻開閃卡">
-                <span class="card-kicker" id="flashcardKicker">ENGLISH</span>
-                <strong id="flashcardMain">hello</strong>
-                <span id="flashcardSub">點一下翻面</span>
-                <span class="card-detail" id="flashcardDetail"></span>
-                <span class="card-example" id="flashcardExample"></span>
-                <span class="card-source" id="flashcardSource"></span>
-              </button>
-              <div class="flashcard-actions">
-                <button class="review-button" id="markReviewButton" type="button">還要練習</button>
-                <button class="speak-button" id="flashcardSpeakButton" type="button">播放發音</button>
-                <button class="mastered-button" id="markMasteredButton" type="button">我記住了</button>
-              </div>
-              <div class="card-navigation">
-                <button class="ghost-button" id="previousCardButton" type="button">← 上一張</button>
-                <button class="ghost-button" id="reviewAgainButton" type="button">只練待加強</button>
-                <button class="ghost-button" id="nextCardButton" type="button">下一張 →</button>
+              <p id="flashcardResumeLabel" class="resume-label" aria-live="polite"></p>
+              <div class="session-start-actions">
+                <button class="primary-button" id="startFlashcardsButton" type="button">開始閃卡</button>
+                <button class="secondary-button" id="restartFlashcardsButton" type="button" hidden>重新開始</button>
               </div>
             </div>
           </section>
@@ -164,6 +156,11 @@
               </div>
               <div class="quiz-intro-grid">
                 <div class="quiz-setup-card">
+                  <div class="session-scope-summary quiz-scope-summary">
+                    <span>目前範圍</span>
+                    <strong id="quizSetupCount">0 筆可測驗</strong>
+                    <p id="quizSetupScope"></p>
+                  </div>
                   <h3>這回想做幾題？</h3>
                   <div class="quiz-size-options" id="quizSizeOptions">
                     <button class="is-active" data-size="10" type="button"><strong>10</strong><span>快速暖身</span></button>
@@ -189,24 +186,6 @@
               </div>
             </div>
 
-            <div id="quizPlay" hidden>
-              <div class="quiz-progress">
-                <div><span id="quizProgressText">第 1 題，共 10 題</span><strong id="quizScoreText">答對 0 題</strong></div>
-                <div class="progress-track"><span id="quizProgressBar"></span></div>
-              </div>
-              <article class="question-card">
-                <div class="question-meta">
-                  <span id="questionType">英 → 中</span>
-                  <span id="questionSource"></span>
-                </div>
-                <button id="questionSpeechButton" class="question-speech" type="button" hidden>播放題目發音</button>
-                <h3 id="questionPrompt"></h3>
-                <div id="answerArea"></div>
-                <div id="answerFeedback" class="answer-feedback" aria-live="polite"></div>
-                <button class="primary-button wide" id="nextQuestionButton" type="button" hidden>下一題</button>
-              </article>
-            </div>
-
             <div id="quizResult" hidden></div>
           </section>
         </section>
@@ -217,6 +196,67 @@
         <span>資料只保存在你的瀏覽器</span>
       </footer>
     </div>
+
+    <section id="focusSession" class="focus-session" hidden aria-label="專注學習工作階段">
+      <header class="focus-header">
+        <button id="exitFocusButton" class="focus-icon-button" type="button" aria-label="離開學習工作階段">←</button>
+        <strong id="focusSessionTitle">閃卡</strong>
+        <span id="focusSessionProgress" class="focus-session-progress">1 / 1</span>
+        <details id="focusMenu" class="focus-menu">
+          <summary aria-label="更多學習選項">⋯</summary>
+          <div class="focus-menu-popover">
+            <strong id="focusScopeTitle">目前範圍</strong>
+            <p id="focusScopeDetail"></p>
+            <p id="flashcardMasteryLabel"></p>
+            <button id="reviewAgainButton" class="text-button" type="button">只練待加強</button>
+            <button id="restartFocusButton" class="secondary-button" type="button">重新開始</button>
+          </div>
+        </details>
+      </header>
+
+      <main class="focus-main">
+        <div id="focusFlashcards" class="focus-pane flashcard-focus-pane" hidden>
+          <div class="progress-track focus-progress-track"><span id="flashcardProgressBar"></span></div>
+          <div id="flashcardStage" class="flashcard-stage">
+            <div class="flashcard-viewport">
+              <button id="flashcard" class="flashcard" type="button" aria-label="翻開閃卡">
+                <span class="card-kicker" id="flashcardKicker">ENGLISH</span>
+                <strong id="flashcardMain">hello</strong>
+                <span id="flashcardSub">點一下翻面</span>
+                <span class="card-detail" id="flashcardDetail"></span>
+                <span class="card-example" id="flashcardExample"></span>
+              </button>
+              <details id="flashcardMore" class="card-more" hidden>
+                <summary>更多內容</summary>
+                <p id="flashcardSource"></p>
+              </details>
+            </div>
+            <div class="flashcard-actions" aria-label="閃卡操作">
+              <button class="focus-action secondary" id="previousCardButton" type="button"><span aria-hidden="true">←</span><small>上一張</small></button>
+              <button class="focus-action review-button" id="markReviewButton" type="button"><span aria-hidden="true">↺</span><small>待加強</small></button>
+              <button class="focus-action speak-button" id="flashcardSpeakButton" type="button"><span aria-hidden="true">▶</span><small>發音</small></button>
+              <button class="focus-action mastered-button" id="markMasteredButton" type="button"><span aria-hidden="true">✓</span><small>已熟悉</small></button>
+              <button class="focus-action secondary" id="nextCardButton" type="button"><span aria-hidden="true">→</span><small>下一張</small></button>
+            </div>
+          </div>
+        </div>
+
+        <div id="quizPlay" class="focus-pane quiz-focus-pane" hidden>
+          <div class="progress-track focus-progress-track"><span id="quizProgressBar"></span></div>
+          <article class="question-card">
+            <div class="question-meta">
+              <span id="questionType">英 → 中</span>
+              <span id="questionSource" hidden></span>
+            </div>
+            <button id="questionSpeechButton" class="question-speech" type="button" hidden>播放題目發音</button>
+            <h3 id="questionPrompt" tabindex="-1"></h3>
+            <div id="answerArea"></div>
+            <div id="answerFeedback" class="answer-feedback" aria-live="polite"></div>
+            <button class="primary-button wide" id="nextQuestionButton" type="button" hidden>下一題</button>
+          </article>
+        </div>
+      </main>
+    </section>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <script src="./vocabulary-data.js"></script>

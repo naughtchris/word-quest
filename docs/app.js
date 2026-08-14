@@ -39,11 +39,14 @@
     flashIndex: 0,
     flashFlipped: false,
     flashFront: "english",
+    flashOrder: "ordered",
     flashcardRestored: false,
     lastFlashSpeechKey: null,
     quizSize: "10",
     quizSpeechEnabled: speechSupported,
     quiz: null,
+    focusSession: "inactive",
+    focusReturnElement: null,
     progress: loadProgress(),
   };
 
@@ -199,11 +202,11 @@
     switchMode("review");
     resetFlashDeck();
     updateStudySummary();
-    if (state.flashcardRestored) showToast("已恢復上次閃卡進度");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function openLibrary() {
+    if (state.focusSession !== "inactive" && !exitFocusSession()) return;
     state.screen = "library";
     document.body.classList.remove("is-studying");
     saveFlashSession();
@@ -212,6 +215,63 @@
     $("libraryScreen").hidden = false;
     renderLibrary();
     window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function focusScopeDescription() {
+    const selected = books.filter((book) => state.selectedBooks.has(book.id)).map((book) => book.title).join(" ＋ ");
+    const count = filteredWords().length;
+    return `${selected} · 目前範圍 ${count} 筆`;
+  }
+
+  function enterFocusSession(type) {
+    const wasInactive = state.focusSession === "inactive";
+    state.focusSession = type;
+    if (wasInactive) state.focusReturnElement = document.activeElement;
+    document.body.classList.add("is-focus-session");
+    const pageShell = document.querySelector(".page-shell");
+    pageShell.inert = true;
+    pageShell.setAttribute("aria-hidden", "true");
+    $("focusSession").hidden = false;
+    $("focusFlashcards").hidden = type !== "flashcard";
+    $("quizPlay").hidden = type !== "quiz";
+    $("focusSessionTitle").textContent = type === "flashcard" ? "閃卡練習" : "單字測驗";
+    $("focusScopeTitle").textContent = type === "flashcard" ? "閃卡範圍" : "測驗範圍";
+    $("focusScopeDetail").textContent = type === "quiz" && state.quiz
+      ? `${books.filter((book) => state.selectedBooks.has(book.id)).map((book) => book.title).join(" ＋ ")} · 本次 ${state.quiz.questions.length} 題`
+      : focusScopeDescription();
+    $("flashcardMasteryLabel").hidden = type !== "flashcard";
+    $("reviewAgainButton").hidden = type !== "flashcard";
+    $("focusMenu").open = false;
+    if (type === "flashcard") renderFlashcard();
+    else renderQuizQuestion();
+    setTimeout(() => (type === "flashcard" ? $("flashcard") : $("questionPrompt"))?.focus(), 0);
+  }
+
+  function exitFocusSession({ skipConfirm = false, preserveQuiz = false } = {}) {
+    if (state.focusSession === "inactive") return true;
+    if (state.focusSession === "quiz" && !skipConfirm && state.quiz?.questions.some((question) => question.answered)) {
+      if (!confirm("要離開這次測驗嗎？本次作答進度不會保留。")) return false;
+    }
+    if (state.focusSession === "flashcard") {
+      saveFlashSession();
+      state.flashcardRestored = true;
+    }
+    window.speechSynthesis?.cancel();
+    const previousType = state.focusSession;
+    state.focusSession = "inactive";
+    document.body.classList.remove("is-focus-session");
+    $("focusSession").hidden = true;
+    $("focusFlashcards").hidden = true;
+    $("quizPlay").hidden = true;
+    const pageShell = document.querySelector(".page-shell");
+    pageShell.inert = false;
+    pageShell.removeAttribute("aria-hidden");
+    if (previousType === "quiz" && !preserveQuiz) resetQuiz();
+    if (previousType === "flashcard") renderFlashcardSetup();
+    const returnTarget = state.focusReturnElement;
+    state.focusReturnElement = null;
+    if (!preserveQuiz) setTimeout(() => returnTarget?.focus(), 0);
+    return true;
   }
 
   function selectedBookWords() {
@@ -270,7 +330,7 @@
     );
     $("filterSummary").textContent = activeFilterCount ? `${state.selectedBooks.size} 份教材 · ${activeFilterCount} 個條件` : "每份教材皆為全部內容";
     if (state.mode === "review") renderReview();
-    if (state.mode === "flashcards") renderFlashcard();
+    if (state.mode === "flashcards") renderFlashcardSetup();
     if (state.mode === "quiz" && !state.quiz) updateQuizSetup();
   }
 
@@ -285,7 +345,7 @@
     if (mode === "review") renderReview();
     if (mode === "flashcards") {
       if (previousMode !== "flashcards") state.lastFlashSpeechKey = null;
-      renderFlashcard();
+      renderFlashcardSetup();
     }
     if (mode === "quiz") updateQuizSetup();
   }
@@ -355,26 +415,30 @@
       index: state.flashIndex,
       flipped: state.flashFlipped,
       front: state.flashFront,
+      order: state.flashOrder,
       updatedAt: new Date().toISOString(),
     };
     state.progress.flashcardLastContext = context;
     saveProgress();
   }
 
-  function resetFlashDeck(source = filteredWords()) {
+  function resetFlashDeck(source = filteredWords(), { forceNew = false } = {}) {
     const contextKey = flashcardContextKey();
     const saved = state.progress.flashcardSessions?.[contextKey];
     const sourceIds = new Set(source.map((word) => word.id));
     const savedIds = saved ? saved.deckIds || [] : [];
-    const canRestore = savedIds.length === source.length
+    const canRestore = !forceNew && savedIds.length === source.length
       && savedIds.every((id) => sourceIds.has(id) && wordsById.has(id));
-    state.flashDeck = canRestore ? savedIds.map((id) => wordsById.get(id)) : [...source];
+    if (canRestore) state.flashOrder = saved.order === "random" ? "random" : "ordered";
+    const freshDeck = state.flashOrder === "random" ? shuffle(source) : [...source];
+    state.flashDeck = canRestore ? savedIds.map((id) => wordsById.get(id)) : freshDeck;
     state.flashIndex = canRestore ? Math.min(Math.max(Number(saved.index) || 0, 0), Math.max(state.flashDeck.length - 1, 0)) : 0;
     state.flashFlipped = canRestore ? Boolean(saved.flipped) : false;
     state.flashFront = canRestore && ["english", "chinese"].includes(saved.front) ? saved.front : state.flashFront;
     state.lastFlashSpeechKey = null;
     state.flashcardRestored = canRestore;
     renderFlashcard();
+    renderFlashcardSetup();
   }
 
   function currentFlashWord() { return state.flashDeck[state.flashIndex]; }
@@ -383,7 +447,6 @@
     const word = currentFlashWord();
     $("flashcardEmpty").hidden = Boolean(word);
     $("flashcardStage").hidden = !word;
-    $("flashcardResumeLabel").textContent = state.flashcardRestored ? "已恢復進度" : "";
     if (!word) return;
     const frontEnglish = state.flashFront === "english";
     const showingFront = !state.flashFlipped;
@@ -396,7 +459,9 @@
     $("flashcardDetail").textContent = showingFront ? "" : detail;
     $("flashcardExample").textContent = showingFront || !example ? "" : `${example.draft ? "例句草稿：" : ""}${example.english}｜${example.chinese}`;
     $("flashcardSource").textContent = `${word.bookTitle} · ${semesterLabel(word.semester)} · ${word.unit} · ${word.className} · ${word.page}`;
-    $("flashcardProgressLabel").textContent = `第 ${state.flashIndex + 1} 張，共 ${state.flashDeck.length} 張`;
+    $("flashcardMore").hidden = showingFront;
+    if (showingFront) $("flashcardMore").open = false;
+    $("focusSessionProgress").textContent = `${state.flashIndex + 1} / ${state.flashDeck.length}`;
     const mastered = state.flashDeck.filter((item) => wordProgress(item.id).status === "mastered").length;
     $("flashcardMasteryLabel").textContent = `${mastered} 個已熟悉`;
     $("flashcardProgressBar").style.width = `${((state.flashIndex + 1) / state.flashDeck.length) * 100}%`;
@@ -406,8 +471,35 @@
     maybeAutoSpeakFlashcard(word);
   }
 
+  function renderFlashcardSetup() {
+    const words = filteredWords();
+    const hasWords = words.length > 0;
+    $("flashcardEmpty").hidden = hasWords;
+    $("flashcardSetup").hidden = !hasWords;
+    $("flashcardSetupCount").textContent = `${words.length} 個單字`;
+    $("flashcardSetupScope").textContent = focusScopeDescription();
+    $("flashcardFront").value = state.flashFront;
+    document.querySelectorAll("#flashcardOrderOptions [data-order]").forEach((button) => {
+      button.classList.toggle("is-active", button.dataset.order === state.flashOrder);
+    });
+    $("flashcardResumeLabel").textContent = state.flashcardRestored
+      ? `上次看到第 ${state.flashIndex + 1} 張，可直接繼續。`
+      : "";
+    $("startFlashcardsButton").textContent = state.flashcardRestored ? "繼續上次" : "開始閃卡";
+    $("restartFlashcardsButton").hidden = !state.flashcardRestored;
+  }
+
+  function startFlashcardSession(resume = state.flashcardRestored) {
+    if (!filteredWords().length) return showToast("目前範圍沒有可練習的單字");
+    if (!resume) {
+      resetFlashDeck(filteredWords(), { forceNew: true });
+      saveFlashSession();
+    }
+    enterFocusSession("flashcard");
+  }
+
   function maybeAutoSpeakFlashcard(word) {
-    if (!speechSupported || state.mode !== "flashcards" || $("flashcardsPanel").hidden) return;
+    if (!speechSupported || state.focusSession !== "flashcard") return;
     const shouldSpeak = (state.flashFront === "english" && !state.flashFlipped)
       || (state.flashFront === "chinese" && state.flashFlipped);
     if (!shouldSpeak) return;
@@ -416,7 +508,7 @@
     state.lastFlashSpeechKey = speechKey;
     setTimeout(() => {
       const current = currentFlashWord();
-      if (current?.id === word.id && state.mode === "flashcards") speak(word.audioText);
+      if (current?.id === word.id && state.focusSession === "flashcard") speak(word.audioText);
     }, 120);
   }
 
@@ -510,6 +602,8 @@
     const includeSpeech = speechAvailable && state.quizSpeechEnabled;
     const enabledTypes = enabledQuizTypeIds(words, includeSpeech);
     const eligibleCount = words.filter((word) => enabledTypes.some((type) => quizTypes[type].eligible(word))).length;
+    $("quizSetupCount").textContent = `${eligibleCount} 筆可測驗`;
+    $("quizSetupScope").textContent = focusScopeDescription();
     $("startQuizButton").disabled = eligibleCount === 0;
     $("startQuizButton").textContent = eligibleCount ? `從 ${eligibleCount} 筆可用內容中開始測驗` : "目前範圍沒有可用題目";
     $("speechWarning").hidden = speechAvailable;
@@ -552,11 +646,10 @@
       return question;
     });
     if (!questionPool.length) return showToast("目前範圍沒有符合資料規則的測驗題目", 2800);
-    state.quiz = { questions: questionPool, index: 0 };
+    state.quiz = { questions: questionPool, index: 0, sourceWords: [...sourceWords] };
     $("quizSetup").hidden = true;
     $("quizResult").hidden = true;
-    $("quizPlay").hidden = false;
-    renderQuizQuestion();
+    enterFocusSession("quiz");
   }
 
   function renderQuizQuestion() {
@@ -564,14 +657,14 @@
     const question = quiz?.questions[quiz.index];
     if (!question) return finishQuiz();
     const definition = quizTypes[question.type];
-    const completedCorrect = quiz.questions.filter((item) => item.answered && item.correct).length;
-    $("quizProgressText").textContent = `第 ${quiz.index + 1} 題，共 ${quiz.questions.length} 題`;
-    $("quizScoreText").textContent = `答對 ${completedCorrect} 題`;
+    $("focusSessionProgress").textContent = `${quiz.index + 1} / ${quiz.questions.length}`;
     $("quizProgressBar").style.width = `${((quiz.index + (question.answered ? 1 : 0)) / quiz.questions.length) * 100}%`;
     $("questionType").textContent = definition.label;
     $("questionSource").textContent = `${question.word.bookTitle} · ${question.word.partOfSpeech.replaceAll("_", " ")} · ${question.word.unit} · ${question.word.className}`;
+    $("questionSource").hidden = !question.answered;
     $("questionPrompt").textContent = definition.prompt(question.word);
-    $("questionSpeechButton").hidden = !definition.speech || !question.word.audioText;
+    $("questionSpeechButton").hidden = !question.word.audioText || (!definition.speech && !question.answered);
+    $("questionSpeechButton").textContent = question.answered ? "重播發音" : "播放題目發音";
     $("answerFeedback").className = "answer-feedback";
     $("answerFeedback").innerHTML = "";
     $("nextQuestionButton").hidden = !question.answered;
@@ -596,12 +689,10 @@
     if (question.answered) {
       const feedback = $("answerFeedback");
       feedback.classList.add(question.correct ? "correct" : "incorrect");
-      const detail = structuredDetail(question.word);
-      const example = trustedExample(question.word);
-      const support = [detail, example ? `${example.draft ? "例句草稿：" : ""}${example.english}｜${example.chinese}` : ""].filter(Boolean).map(escapeHtml).join("<br>");
       feedback.innerHTML = question.correct
-        ? `<strong>答對了！</strong>${escapeHtml(question.word.english)} 就是「${escapeHtml(question.word.chinese)}」。${support ? `<br>${support}` : ""}`
-        : `<strong>再記一次就好</strong>正確答案是 ${escapeHtml(question.answer)}。${support ? `<br>${support}` : ""}`;
+        ? `<strong>答對了！</strong>${escapeHtml(question.word.english)}｜${escapeHtml(question.word.chinese)}`
+        : `<strong>再記一次就好</strong>正確答案：${escapeHtml(question.answer)}`;
+      setTimeout(() => $("nextQuestionButton")?.focus(), 0);
     }
     if (definition.speech && !question.autoSpoken && !question.answered) {
       question.autoSpoken = true;
@@ -642,9 +733,10 @@
     }).join("");
     state.progress.lastQuiz = { date: new Date().toISOString(), correct, total: questions.length, percent };
     saveProgress();
+    exitFocusSession({ skipConfirm: true, preserveQuiz: true });
     $("quizPlay").hidden = true;
     $("quizResult").hidden = false;
-    $("quizResult").innerHTML = `<div class="quiz-result-card">
+    $("quizResult").innerHTML = `<div class="quiz-result-card" tabindex="-1">
       <p class="eyebrow">QUIZ COMPLETE</p>
       <div class="score-ring" style="--score:${percent}%"><span>${percent}%</span></div>
       <h2>${percent >= 90 ? "太棒了，記得很扎實！" : percent >= 70 ? "很不錯，再練幾個就更穩了" : "完成就是進步，再試一次吧"}</h2>
@@ -660,6 +752,7 @@
     $("retryWrongButton")?.addEventListener("click", () => createQuiz([...new Map(wrong.map((item) => [item.word.id, item.word])).values()]));
     $("restartQuizButton").addEventListener("click", resetQuiz);
     $("returnReviewButton").addEventListener("click", () => { resetQuiz(); switchMode("review"); });
+    setTimeout(() => $("quizResult").querySelector(".quiz-result-card")?.focus(), 0);
   }
 
   function resetQuiz() {
@@ -743,8 +836,22 @@
   });
 
   $("flashcard").addEventListener("click", () => { state.flashFlipped = !state.flashFlipped; state.flashcardRestored = false; saveFlashSession(); renderFlashcard(); });
-  $("flashcardFront").addEventListener("change", (event) => { state.flashFront = event.target.value; state.flashFlipped = false; state.flashcardRestored = false; state.lastFlashSpeechKey = null; saveFlashSession(); renderFlashcard(); });
-  $("shuffleFlashcards").addEventListener("click", () => { state.flashDeck = shuffle(state.flashDeck); state.flashIndex = 0; state.flashFlipped = false; state.flashcardRestored = false; state.lastFlashSpeechKey = null; saveFlashSession(); renderFlashcard(); showToast("閃卡已重新排列"); });
+  $("flashcardFront").addEventListener("change", (event) => {
+    state.flashFront = event.target.value;
+    state.flashFlipped = false;
+    state.flashcardRestored = false;
+    state.lastFlashSpeechKey = null;
+    renderFlashcardSetup();
+  });
+  $("flashcardOrderOptions").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-order]");
+    if (!button) return;
+    state.flashOrder = button.dataset.order;
+    state.flashcardRestored = false;
+    renderFlashcardSetup();
+  });
+  $("startFlashcardsButton").addEventListener("click", () => startFlashcardSession());
+  $("restartFlashcardsButton").addEventListener("click", () => startFlashcardSession(false));
   $("previousCardButton").addEventListener("click", () => moveFlashcard(-1));
   $("nextCardButton").addEventListener("click", () => moveFlashcard(1));
   $("flashcardSpeakButton").addEventListener("click", () => { const word = currentFlashWord(); if (word) speak(word.audioText); });
@@ -753,14 +860,38 @@
   $("reviewAgainButton").addEventListener("click", () => {
     const reviewWords = filteredWords().filter((word) => wordProgress(word.id).status === "review");
     if (!reviewWords.length) return showToast("目前沒有待加強單字");
-    resetFlashDeck(reviewWords);
+    resetFlashDeck(reviewWords, { forceNew: true });
+    saveFlashSession();
+    $("focusMenu").open = false;
     showToast(`開始複習 ${reviewWords.length} 個待加強單字`);
   });
 
   document.addEventListener("keydown", (event) => {
-    if (state.mode !== "flashcards" || $("flashcardsPanel").hidden || ["INPUT", "SELECT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
-    if (event.key === "ArrowRight") moveFlashcard(1);
-    if (event.key === "ArrowLeft") moveFlashcard(-1);
+    if (state.focusSession === "inactive") return;
+    const editable = ["INPUT", "SELECT", "TEXTAREA"].includes(document.activeElement.tagName);
+    if (event.key === "Escape") {
+      event.preventDefault();
+      exitFocusSession();
+      return;
+    }
+    if (state.focusSession !== "flashcard" || editable) return;
+    if (event.key === "ArrowRight") { event.preventDefault(); moveFlashcard(1); }
+    if (event.key === "ArrowLeft") { event.preventDefault(); moveFlashcard(-1); }
+    if (event.key === " " && document.activeElement === $("flashcard")) {
+      event.preventDefault();
+      $("flashcard").click();
+    }
+    if (event.key === "1") { event.preventDefault(); $("markReviewButton").click(); }
+    if (event.key === "2") { event.preventDefault(); $("markMasteredButton").click(); }
+    if (event.key.toLocaleLowerCase() === "r") { event.preventDefault(); $("flashcardSpeakButton").click(); }
+  });
+
+  $("exitFocusButton").addEventListener("click", () => exitFocusSession());
+  $("restartFocusButton").addEventListener("click", () => {
+    if (!confirm("要重新開始目前的學習工作階段嗎？")) return;
+    $("focusMenu").open = false;
+    if (state.focusSession === "flashcard") startFlashcardSession(false);
+    else if (state.focusSession === "quiz") createQuiz(state.quiz?.sourceWords || filteredWords());
   });
 
   $("quizSizeOptions").addEventListener("click", (event) => {
