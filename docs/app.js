@@ -188,6 +188,7 @@
   function openStudy() {
     if (!state.selectedBooks.size) return;
     state.screen = "study";
+    document.body.classList.add("is-studying");
     state.scopes = restoreSavedScopes();
     $("libraryScreen").hidden = true;
     $("studyScreen").hidden = false;
@@ -204,6 +205,7 @@
 
   function openLibrary() {
     state.screen = "library";
+    document.body.classList.remove("is-studying");
     saveFlashSession();
     window.speechSynthesis?.cancel();
     $("studyScreen").hidden = true;
