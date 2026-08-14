@@ -525,7 +525,7 @@
   const baseQuizEligible = (word) => !word.needsReview;
   const quizTypes = {
     enZh: {
-      label: "英 → 中", description: "看英文選中文", input: false,
+      label: "英 → 中", description: "看英文選中文，題目出現時播放英文發音", input: false, autoSpeak: true,
       eligible: (word) => baseQuizEligible(word) && hasMode(word, "en_zh_choice"),
       prompt: (word) => word.english, answer: (word) => word.chinese, accepted: (word) => [word.chinese], optionValue: (word) => word.chinese,
     },
@@ -535,7 +535,7 @@
       prompt: (word) => word.chinese, answer: (word) => word.english, accepted: (word) => word.acceptedAnswers, optionValue: (word) => word.english,
     },
     spelling: {
-      label: "拼字", description: "看中文寫英文", input: true,
+      label: "拼字", description: "看中文寫英文，題目出現時播放英文發音", input: true, autoSpeak: true,
       eligible: (word) => baseQuizEligible(word) && hasMode(word, "spelling"),
       prompt: (word) => word.chinese, answer: (word) => word.english, accepted: (word) => word.acceptedAnswers,
     },
@@ -590,6 +590,20 @@
     return normalized;
   }
 
+  function spellingHint(answer) {
+    return String(answer || "").split(/(\s+)/).map((token) => {
+      if (/^\s+$/.test(token)) return token;
+      const letters = [...token].filter((character) => /[A-Za-z]/.test(character));
+      let revealed = 0;
+      return [...token].map((character) => {
+        if (!/[A-Za-z]/.test(character)) return character;
+        const show = revealed === 0 || (letters.length >= 5 && revealed === 1);
+        revealed += 1;
+        return show ? character : "＿";
+      }).join("");
+    }).join("");
+  }
+
   function enabledQuizTypeIds(words, includeSpeech = speechSupported && state.quizSpeechEnabled) {
     return Object.entries(quizTypes)
       .filter(([, definition]) => (!definition.speech || includeSpeech) && words.some((word) => definition.eligible(word)))
@@ -633,7 +647,8 @@
       const answer = definition.answer(word);
       const question = {
         word, type, answer, accepted: definition.accepted(word).filter(Boolean),
-        answered: false, correct: false, userAnswer: "", autoSpoken: false,
+        answered: false, completed: false, correct: false, userAnswer: "", autoSpoken: false,
+        attempts: 0, hintShown: false, usedHint: false,
       };
       if (!definition.input) {
         const distractors = shuffle(sourceWords
@@ -663,7 +678,7 @@
     $("questionSource").textContent = `${question.word.bookTitle} · ${question.word.partOfSpeech.replaceAll("_", " ")} · ${question.word.unit} · ${question.word.className}`;
     $("questionSource").hidden = !question.answered;
     $("questionPrompt").textContent = definition.prompt(question.word);
-    $("questionSpeechButton").hidden = !question.word.audioText || (!definition.speech && !question.answered);
+    $("questionSpeechButton").hidden = !question.word.audioText || (!definition.speech && !definition.autoSpeak && !question.answered);
     $("questionSpeechButton").textContent = question.answered ? "重播發音" : "播放題目發音";
     $("answerFeedback").className = "answer-feedback";
     $("answerFeedback").innerHTML = "";
@@ -686,15 +701,20 @@
       if (!question.answered) setTimeout(() => $("textAnswerInput")?.focus(), 0);
     }
 
+    if (question.hintShown && !question.answered) {
+      $("answerFeedback").classList.add("incorrect");
+      $("answerFeedback").innerHTML = `<strong>再試一次</strong><span class="answer-hint-label">部分提示：</span><code class="answer-hint">${escapeHtml(spellingHint(question.answer))}</code><span class="answer-hint-help">再聽一次發音，想想完整拼字。</span>`;
+    }
+
     if (question.answered) {
       const feedback = $("answerFeedback");
       feedback.classList.add(question.correct ? "correct" : "incorrect");
       feedback.innerHTML = question.correct
-        ? `<strong>答對了！</strong>${escapeHtml(question.word.english)}｜${escapeHtml(question.word.chinese)}`
+        ? `<strong>答對了！</strong>${question.usedHint ? "<span>使用提示後答對，已加深記憶。</span>" : ""}${escapeHtml(question.word.english)}｜${escapeHtml(question.word.chinese)}`
         : `<strong>再記一次就好</strong>正確答案：${escapeHtml(question.answer)}`;
       setTimeout(() => $("nextQuestionButton")?.focus(), 0);
     }
-    if (definition.speech && !question.autoSpoken && !question.answered) {
+    if ((definition.speech || definition.autoSpeak) && !question.autoSpoken && !question.answered) {
       question.autoSpoken = true;
       setTimeout(() => {
         const current = state.quiz?.questions[state.quiz.index];
@@ -708,9 +728,19 @@
     if (!question || question.answered) return;
     const definition = quizTypes[question.type];
     question.userAnswer = answer;
+    question.attempts += 1;
     question.correct = question.accepted.some((expected) => normalizeAnswer(answer, definition.structured) === normalizeAnswer(expected, definition.structured));
-    question.answered = true;
     recordAttempt(question.word.id, question.correct);
+    if (question.type === "spelling" && !question.correct && question.attempts === 1) {
+      question.hintShown = true;
+      question.usedHint = true;
+      question.userAnswer = "";
+      question.answered = false;
+      renderQuizQuestion();
+      return;
+    }
+    question.answered = true;
+    question.completed = true;
     renderQuizQuestion();
   }
 
@@ -725,6 +755,7 @@
     const questions = state.quiz.questions;
     const correct = questions.filter((question) => question.correct).length;
     const wrong = questions.filter((question) => !question.correct);
+    const hinted = questions.filter((question) => question.usedHint).length;
     const percent = questions.length ? Math.round((correct / questions.length) * 100) : 0;
     const breakdown = Object.keys(quizTypes).map((type) => {
       const items = questions.filter((question) => question.type === type);
@@ -740,7 +771,7 @@
       <p class="eyebrow">QUIZ COMPLETE</p>
       <div class="score-ring" style="--score:${percent}%"><span>${percent}%</span></div>
       <h2>${percent >= 90 ? "太棒了，記得很扎實！" : percent >= 70 ? "很不錯，再練幾個就更穩了" : "完成就是進步，再試一次吧"}</h2>
-      <p>這次答對 ${correct} 題，共 ${questions.length} 題。</p>
+      <p>這次答對 ${correct} 題，共 ${questions.length} 題。${hinted ? `其中 ${hinted} 題使用了提示。` : ""}</p>
       <div class="result-breakdown">${breakdown}</div>
       ${wrong.length ? `<h3>再看一次這些單字</h3><div class="wrong-list">${wrong.map((question) => `<div class="wrong-item"><strong>${escapeHtml(question.word.english)}</strong><span>${escapeHtml(question.word.chinese)} · ${escapeHtml(question.word.bookTitle)}</span></div>`).join("")}</div>` : ""}
       <div class="result-actions">

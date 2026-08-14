@@ -215,6 +215,8 @@ button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-v
 .answer-feedback strong { display: block; margin-bottom: 4px; font-size: 17px; }
 .answer-feedback.correct { color: var(--teal-dark); }
 .answer-feedback.incorrect { color: #a84432; }
+.answer-feedback .answer-hint-label, .answer-feedback .answer-hint-help { display: block; margin-top: 6px; color: var(--ink-soft); font-size: 13px; }
+.answer-feedback .answer-hint { display: inline-block; margin: 8px 0 2px; padding: 7px 12px; border-radius: 9px; background: var(--cream); color: var(--ink); font: 700 20px/1.2 "DM Sans", sans-serif; letter-spacing: .12em; }
 .quiz-result-card { max-width: 850px; margin: 0 auto; padding: 42px; border: 1px solid var(--line); border-radius: 28px 28px 28px 8px; background: white; box-shadow: var(--shadow); text-align: center; }
 .score-ring { width: 170px; height: 170px; display: grid; place-items: center; margin: 10px auto 24px; border-radius: 50%; background: conic-gradient(var(--teal) var(--score), #e9ece8 0); position: relative; }
 .score-ring::before { content: ""; position: absolute; inset: 13px; border-radius: 50%; background: white; }
