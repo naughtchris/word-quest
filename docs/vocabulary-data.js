@@ -42335,7 +42335,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -42351,7 +42353,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_204851.jpg",
@@ -42378,10 +42380,12 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "Did you do the laundry? No, it slipped my mind.",
-        "exampleChinese": "教材例句翻譯待補",
+        "exampleChinese": "你洗衣服了嗎？沒有，我忘了。",
         "exampleStatus": "source_phrase",
         "baseForm": "",
         "pastTense": "",
@@ -42394,7 +42398,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_204851.jpg",
@@ -42466,7 +42470,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -42482,7 +42488,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "固定句，不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_204851.jpg",
@@ -42689,7 +42695,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -42705,7 +42713,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_204851.jpg",
@@ -42777,10 +42785,12 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "I’ll do my best to study English.",
-        "exampleChinese": "教材例句翻譯待補",
+        "exampleChinese": "我會盡力學習英文。",
         "exampleStatus": "source_phrase",
         "baseForm": "",
         "pastTense": "",
@@ -42793,7 +42803,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_204851.jpg",
@@ -42841,7 +42851,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "各造一句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_204851.jpg",
@@ -42958,7 +42968,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -42974,7 +42986,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_204851.jpg",
@@ -43001,7 +43013,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -43017,8 +43031,8 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
-        "reviewNotes": "不造句；詞性需確認",
+        "needsReview": false,
+        "reviewNotes": "",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_204851.jpg",
         "ocrConfidence": "0.96"
@@ -43044,7 +43058,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -43060,7 +43076,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_204851.jpg",
@@ -43492,7 +43508,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -43508,7 +43526,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_204931.jpg",
@@ -43535,7 +43553,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -43551,7 +43571,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_204931.jpg",
@@ -43869,7 +43889,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "各造一句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_204931.jpg",
@@ -44097,7 +44117,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "各造一句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_204931.jpg",
@@ -44145,7 +44165,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "各造一句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_204931.jpg",
@@ -44193,7 +44213,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "各造一句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_204931.jpg",
@@ -44691,7 +44711,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "各造一句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205024.jpg",
@@ -44718,7 +44738,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -44734,7 +44756,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205024.jpg",
@@ -45031,7 +45053,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -45047,7 +45071,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205024.jpg",
@@ -45209,7 +45233,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -45225,7 +45251,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205024.jpg",
@@ -45252,7 +45278,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -45268,7 +45296,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "leaves",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205024.jpg",
@@ -45295,7 +45323,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -45311,7 +45341,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "workmen",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "各造一句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205024.jpg",
@@ -45359,7 +45389,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "只造 Vpp",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205024.jpg",
@@ -45386,7 +45416,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -45402,11 +45434,11 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
-        "reviewNotes": "文法模板或插槽，請確認測驗呈現方式",
+        "needsReview": false,
+        "reviewNotes": "文法模板或插槽",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205024.jpg",
-        "ocrConfidence": "0.92"
+        "ocrConfidence": "0.96"
       },
       {
         "id": "way_to_go_12-4a59669e5a09",
@@ -45429,7 +45461,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -45445,7 +45479,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205047.jpg",
@@ -45697,10 +45731,12 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "I can’t see anything in the darkness.",
-        "exampleChinese": "教材例句翻譯待補",
+        "exampleChinese": "我在黑暗中什麼都看不見。",
         "exampleStatus": "source_phrase",
         "baseForm": "",
         "pastTense": "",
@@ -45713,7 +45749,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205047.jpg",
@@ -45740,10 +45776,12 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "Can you tell us the difference between a horse and a donkey?",
-        "exampleChinese": "教材例句翻譯待補",
+        "exampleChinese": "你能告訴我們馬和驢的不同嗎？",
         "exampleStatus": "source_phrase",
         "baseForm": "",
         "pastTense": "",
@@ -45756,7 +45794,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205047.jpg",
@@ -45963,10 +46001,12 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "He seemed very happy yesterday.",
-        "exampleChinese": "教材例句翻譯待補",
+        "exampleChinese": "他昨天似乎很開心。",
         "exampleStatus": "source_phrase",
         "baseForm": "",
         "pastTense": "",
@@ -45979,7 +46019,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205047.jpg",
@@ -46006,10 +46046,12 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "Everyone gasped when they saw the superstar.",
-        "exampleChinese": "教材例句翻譯待補",
+        "exampleChinese": "每個人看到那位巨星時都倒抽一口氣。",
         "exampleStatus": "source_phrase",
         "baseForm": "",
         "pastTense": "",
@@ -46022,7 +46064,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205047.jpg",
@@ -46049,7 +46091,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -46065,7 +46109,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205047.jpg",
@@ -46092,7 +46136,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -46108,7 +46154,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205047.jpg",
@@ -46630,7 +46676,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -46646,7 +46694,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205212.jpg",
@@ -46808,7 +46856,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -46824,7 +46874,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205212.jpg",
@@ -47142,7 +47192,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "各造一句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205212.jpg",
@@ -47664,7 +47714,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -47680,7 +47732,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "women",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "各造一句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205212.jpg",
@@ -47707,7 +47759,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -47723,11 +47777,11 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
-        "reviewNotes": "文法模板或插槽，請確認測驗呈現方式",
+        "needsReview": false,
+        "reviewNotes": "文法模板或插槽",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205212.jpg",
-        "ocrConfidence": "0.92"
+        "ocrConfidence": "0.96"
       },
       {
         "id": "way_to_go_12-edbd8b79267d",
@@ -48266,7 +48320,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "造 Vpp",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205223.jpg",
@@ -48314,7 +48368,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "造 Vpp",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205223.jpg",
@@ -48971,7 +49025,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -48987,7 +49043,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205252.jpg",
@@ -49239,7 +49295,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -49255,7 +49313,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "shelves",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "各造一句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205252.jpg",
@@ -49282,7 +49340,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -49298,7 +49358,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "thieves",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "各造一句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205252.jpg",
@@ -49775,10 +49835,12 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "After he found his dog, he smiled with relief.",
-        "exampleChinese": "教材例句翻譯待補",
+        "exampleChinese": "找到狗後，他寬慰地笑了。",
         "exampleStatus": "source_phrase",
         "baseForm": "",
         "pastTense": "",
@@ -49791,7 +49853,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205252.jpg",
@@ -50019,7 +50081,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "各造一句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205252.jpg",
@@ -50676,7 +50738,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -50692,7 +50756,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "口語；不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205304.jpg",
@@ -50809,7 +50873,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -50825,7 +50891,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "口語對答；造對話",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205304.jpg",
@@ -50897,10 +50963,12 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "Could you tell me your business hours?",
-        "exampleChinese": "教材例句翻譯待補",
+        "exampleChinese": "請問你們的營業時間是幾點？",
         "exampleStatus": "source_phrase",
         "baseForm": "",
         "pastTense": "",
@@ -50913,7 +50981,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205304.jpg",
@@ -50985,7 +51053,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -51001,7 +51071,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205318.jpg",
@@ -51253,10 +51323,12 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "There’s a traffic jam on Smith Road.",
-        "exampleChinese": "教材例句翻譯待補",
+        "exampleChinese": "Smith 路上有塞車。",
         "exampleStatus": "source_phrase",
         "baseForm": "",
         "pastTense": "",
@@ -51269,7 +51341,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205318.jpg",
@@ -51587,7 +51659,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "造 Vpp",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205318.jpg",
@@ -51614,10 +51686,12 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "I like science fiction movies more than action movies.",
-        "exampleChinese": "教材例句翻譯待補",
+        "exampleChinese": "我喜歡科幻電影勝過動作電影。",
         "exampleStatus": "source_phrase",
         "baseForm": "",
         "pastTense": "",
@@ -51630,7 +51704,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205318.jpg",
@@ -51792,7 +51866,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -51808,8 +51884,8 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
-        "reviewNotes": "縮寫／全名，請確認是否作答",
+        "needsReview": false,
+        "reviewNotes": "",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205318.jpg",
         "ocrConfidence": "0.96"
@@ -52015,7 +52091,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -52031,7 +52109,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "mice",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "各造一句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205318.jpg",
@@ -52148,7 +52226,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -52164,7 +52244,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205329.jpg",
@@ -52281,7 +52361,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -52297,7 +52379,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205329.jpg",
@@ -52594,7 +52676,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -52610,7 +52694,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "copies",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "各造一句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205329.jpg",
@@ -52658,7 +52742,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "造 Vpp",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205329.jpg",
@@ -52955,7 +53039,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -52971,7 +53057,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "告訴別人應該做的事",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205134.jpg",
@@ -53088,10 +53174,12 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "These clothes are of good quality.",
-        "exampleChinese": "教材例句翻譯待補",
+        "exampleChinese": "這些衣服的品質很好。",
         "exampleStatus": "source_phrase",
         "baseForm": "",
         "pastTense": "",
@@ -53104,7 +53192,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205134.jpg",
@@ -53671,10 +53759,12 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "He bought the diamond ring in cash.",
-        "exampleChinese": "教材例句翻譯待補",
+        "exampleChinese": "他用現金買了鑽戒。",
         "exampleStatus": "source_phrase",
         "baseForm": "",
         "pastTense": "",
@@ -53687,7 +53777,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205134.jpg",
@@ -53714,10 +53804,12 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "Could I pay for the meal by credit card?",
-        "exampleChinese": "教材例句翻譯待補",
+        "exampleChinese": "我可以用信用卡付餐費嗎？",
         "exampleStatus": "source_phrase",
         "baseForm": "",
         "pastTense": "",
@@ -53730,7 +53822,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205134.jpg",
@@ -53892,7 +53984,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -53908,7 +54002,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205134.jpg",
@@ -53935,7 +54029,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -53951,7 +54047,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205134.jpg",
@@ -53978,7 +54074,9 @@ window.WORDQUEST_BOOKS = [
         ],
         "quizModes": [
           "en_zh_choice",
-          "zh_en_choice"
+          "zh_en_choice",
+          "listening",
+          "spelling"
         ],
         "exampleSentence": "",
         "exampleChinese": "",
@@ -53994,7 +54092,7 @@ window.WORDQUEST_BOOKS = [
         "pluralForm": "",
         "clozePrompt": "",
         "clozeAnswer": "",
-        "needsReview": true,
+        "needsReview": false,
         "reviewNotes": "不造句",
         "sourceKind": "ocr",
         "sourceImage": "Scan_20260913_205134.jpg",

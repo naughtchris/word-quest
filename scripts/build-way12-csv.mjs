@@ -11,14 +11,14 @@ const rows = [];
 const add = (src, cls, unit, page, english, chinese, pos, type = "word", extra = {}) => rows.push({ src, cls: `Class ${cls}`, semester: "First Semester", unit, page: `p.${page}`, english, chinese, pos, type, ...extra });
 const list = (src, cls, unit, page, entries, pos = "noun") => entries.forEach(([e, c, p = pos, t = "word", x = {}]) => add(src, cls, unit, page, e, c, p, t, x));
 const v = (src, cls, unit, page, e, c, forms, x = {}) => add(src, cls, unit, page, e, c, "verb", "irregular_verb", { forms, ...x });
-const g = (src, cls, unit, page, e, c, x = {}) => add(src, cls, unit, page, e, c, "grammar", "grammar_form", { confidence: "0.92", notes: "文法模板或插槽，請確認測驗呈現方式", ...x });
+const g = (src, cls, unit, page, e, c, x = {}) => add(src, cls, unit, page, e, c, "grammar", "grammar_form", { confidence: "0.96", notes: "文法模板或插槽", ...x });
 
 list(images.p01, 1, "U1", 2, [
   ["supposed to", "應該 (= should)", "verb_phrase", "grammar_form"], ["slip <Sb's> mind", "忘記 (= forget)", "verb_phrase", "phrase", { exampleSentence: "Did you do the laundry? No, it slipped my mind." }],
   ["a bit", "有點 (= a little)", "adverb", "phrase"], ["Better late than never!", "晚比沒有好！", "phrase", "phrase", { notes: "固定句，不造句" }], ["medicine", "藥；（尤其）藥水", "noun"], ["laundry", "（要洗的／正在洗的／洗好的）衣物", "noun"], ["dryer", "烘衣機"], ["garbage", "垃圾", "noun", "word"], ["letter", "信件", "noun", "word", { notes: "不造句" }], ["mail", "郵寄", "verb"], ["do <Sb's> best", "盡力而為", "verb_phrase", "phrase", { exampleSentence: "I’ll do my best to study English." }]
 ]);
 v(images.p01, 1, "U1", 2, "take out", "拿出去", "take out|took out|taken out", { notes: "各造一句" });
-list(images.p01, 2, "U1", 3, [["invent", "發明", "verb"], ["roll the dice", "擲骰子", "verb_phrase", "phrase"], ["Confucius", "孔子", "noun", "word", { notes: "不造句" }], ["alright", "好吧 (= all right)", "interjection", "word", { notes: "不造句；詞性需確認" }], ["among", "在……之中", "preposition", "word", { notes: "不造句" }], ["clue", "線索"], ["space", "空格"], ["rule", "規則"], ["telephone", "電話"], ["correctly", "正確地", "adverb"], ["fair", "公平的", "adjective"], ["double", "兩倍的；雙倍的", "adjective"]]);
+list(images.p01, 2, "U1", 3, [["invent", "發明", "verb"], ["roll the dice", "擲骰子", "verb_phrase", "phrase"], ["Confucius", "孔子", "noun", "word", { notes: "不造句" }], ["alright", "好吧 (= all right)", "interjection"], ["among", "在……之中", "preposition", "word", { notes: "不造句" }], ["clue", "線索"], ["space", "空格"], ["rule", "規則"], ["telephone", "電話"], ["correctly", "正確地", "adverb"], ["fair", "公平的", "adjective"], ["double", "兩倍的；雙倍的", "adjective"]]);
 list(images.p02, 3, "U1", 4, [["celebrate", "慶祝", "verb"], ["walk the dog", "遛狗", "verb_phrase", "phrase"], ["passive voice", "被動語態", "noun", "phrase", { notes: "不造句" }], ["active voice", "主動語態", "noun", "phrase", { notes: "不造句" }], ["French", "法文"], ["Canada", "加拿大"], ["Britain", "不列顛（地名）"], ["Thanksgiving", "感恩節"], ["Iceland", "冰島"], ["durian", "榴槤"]]);
 v(images.p02, 3, "U1", 4, "speak", "講（語言）", "speak|spoke|spoken", { notes: "各造一句" });
 list(images.p02, 4, "U1", 5, [["popular", "受歡迎的", "adjective"], ["discover", "發現", "verb"], ["play", "劇本；戲劇", "noun"], ["America", "美國"]]);
@@ -47,7 +47,7 @@ list(images.p08, 17, "U3", 18, [["water pipe", "水管", "noun_phrase", "phrase"
 list(images.p08, 18, "U3", 19, [["drop <Sth> off", "把……放下", "verb_phrase", "phrase"], ["alter", "改變；修改", "verb"], ["leave <Sth> with <Sb>", "留（某物）給（某人）", "verb_phrase", "phrase"], ["develop", "沖洗（底片）", "verb"], ["hang on", "（電話中）等一下", "verb_phrase", "phrase", { notes: "口語；不造句" }], ["pick <Sth> up", "取回某物", "verb_phrase", "phrase"], ["order", "訂購", "verb"], ["absolutely", "一點不錯；完全對", "adverb", "word", { notes: "口語對答；造對話" }], ["film", "底片", "noun"], ["business hours", "營業時間", "noun_phrase", "phrase", { exampleSentence: "Could you tell me your business hours?" }], ["a roll of", "一卷（卷狀物）", "phrase"]]);
 list(images.p09, 19, "U3", 20, [["police station", "警察局", "noun_phrase", "phrase", { notes: "不造句" }], ["antique", "古董"], ["flood", "洪水"], ["century", "世紀"], ["wallet", "皮夾"], ["bridge", "橋；橋樑"], ["traffic jam", "塞車", "noun_phrase", "phrase", { exampleSentence: "There’s a traffic jam on Smith Road." }], ["awful", "糟糕的", "adjective"], ["wash away", "沖走", "verb_phrase", "phrase"], ["try on", "試穿", "verb_phrase", "phrase"], ["iron", "（用熨斗）熨燙；熨平", "verb"], ["collect", "收集", "verb"], ["annoy", "使惱怒", "verb"]]);
 v(images.p09, 19, "U3", 20, "catch", "抓；趕上", "catch|caught|caught", { notes: "造 Vpp" });
-list(images.p09, 20, "U3", 21, [["science fiction", "科幻小說（或影片）", "noun_phrase", "phrase", { exampleSentence: "I like science fiction movies more than action movies." }], ["lemonade", "檸檬水", "noun"], ["chef", "主廚"], ["hair dryer", "吹風機", "noun_phrase", "phrase"], ["V = volts", "伏特", "noun", "contraction_phrase", { notes: "縮寫／全名，請確認是否作答" }], ["plug in", "把……插入插頭", "verb_phrase", "phrase"], ["tow", "拖吊", "verb"], ["mix", "混合", "verb"], ["thousands of <Ns>", "數以千計的", "phrase"]]);
+list(images.p09, 20, "U3", 21, [["science fiction", "科幻小說（或影片）", "noun_phrase", "phrase", { exampleSentence: "I like science fiction movies more than action movies.", exampleChinese: "我喜歡科幻電影勝過動作電影。" }], ["lemonade", "檸檬水", "noun"], ["chef", "主廚"], ["hair dryer", "吹風機", "noun_phrase", "phrase"], ["V = volts", "伏特", "noun", "contraction_phrase"], ["plug in", "把……插入插頭", "verb_phrase", "phrase"], ["tow", "拖吊", "verb"], ["mix", "混合", "verb"], ["thousands of <Ns>", "數以千計的", "phrase"]]);
 add(images.p09, 20, "U3", 21, "mouse", "老鼠", "noun", "spelling_change", { singularForm: "mouse", pluralForm: "mice", notes: "各造一句" });
 list(images.p10, 21, "U3", 22, [["by the time", "當……的時候", "conjunction", "phrase"], ["front", "在前的；前面的", "adjective"], ["shot", "鉛球", "noun", "word", { notes: "不造句" }], ["meter", "公尺"], ["row", "排；行；列"], ["seat", "座位", "noun", "word", { notes: "不造句" }], ["grocery store", "雜貨店", "noun_phrase", "phrase"], ["principal", "校長"], ["palace", "皇宮；宮殿"], ["banquet", "宴會"], ["own", "擁有（尤其指買來的東西）", "verb"], ["prepare", "準備", "verb"]]);
 add(images.p10, 21, "U3", 22, "copy", "複製品", "noun", "spelling_change", { singularForm: "copy", pluralForm: "copies", notes: "各造一句" }); v(images.p10, 21, "U3", 22, "throw", "丟；擲", "throw|threw|thrown", { notes: "造 Vpp" });
@@ -56,15 +56,31 @@ list(images.p11, 9, "U2", 10, [["had better <Vr>", "應該；最好", "verb_phra
 list(images.p11, 10, "U2", 11, [["exchange", "換貨", "verb"], ["refund", "退貨", "verb"], ["separately", "分開地", "adverb"], ["coincidence", "巧合"], ["cash", "現金", "noun", "word", { exampleSentence: "He bought the diamond ring in cash." }], ["credit card", "信用卡", "noun_phrase", "phrase", { exampleSentence: "Could I pay for the meal by credit card?" }], ["silk top", "絲質上衣", "noun_phrase", "phrase"], ["tuxedo", "男士晚禮服；燕尾服"], ["cardigan", "無領有扣的毛衣"], ["wool sweater", "羊毛衫（沒扣子）", "noun_phrase", "phrase", { notes: "不造句" }], ["evening gown", "（女人的）晚禮服", "noun_phrase", "phrase", { notes: "不造句" }], ["care label", "洗滌標", "noun_phrase", "phrase", { notes: "不造句" }], ["sale", "特價；大減價；大拍賣"]]);
 
 const headers = ["English","Chinese","PartOfSpeech","type","Class","Semester","Unit","Page","VocabularyId","ConceptId","ContentKind","AudioText","AcceptedAnswers","QuizModes","ExampleSentence","ExampleChinese","ExampleStatus","BaseForm","PastTense","PastParticiple","FullForm","ShortForm","RelationType","RelatedTerms","SingularForm","PluralForm","ClozePrompt","ClozeAnswer","NeedsReview","ReviewNotes","SourceKind","SourceFile","SourceImage","OCRConfidence"];
+const exampleTranslations = {
+  "Did you do the laundry? No, it slipped my mind.": "你洗衣服了嗎？沒有，我忘了。",
+  "I’ll do my best to study English.": "我會盡力學習英文。",
+  "I can’t see anything in the darkness.": "我在黑暗中什麼都看不見。",
+  "Can you tell us the difference between a horse and a donkey?": "你能告訴我們馬和驢的不同嗎？",
+  "He seemed very happy yesterday.": "他昨天似乎很開心。",
+  "Everyone gasped when they saw the superstar.": "每個人看到那位巨星時都倒抽一口氣。",
+  "After he found his dog, he smiled with relief.": "找到狗後，他寬慰地笑了。",
+  "Could you tell me your business hours?": "請問你們的營業時間是幾點？",
+  "There’s a traffic jam on Smith Road.": "Smith 路上有塞車。",
+  "I like science fiction movies more than action movies.": "我喜歡科幻電影勝過動作電影。",
+  "These clothes are of good quality.": "這些衣服的品質很好。",
+  "He bought the diamond ring in cash.": "他用現金買了鑽戒。",
+  "Could I pay for the meal by credit card?": "我可以用信用卡付餐費嗎？"
+};
 const esc = (v) => { const s = String(v ?? ""); return /[",\n\r]/.test(s) ? `"${s.replaceAll('"','""')}"` : s; };
 const csv = [headers.join(","), ...rows.map((r) => {
   const forms = r.forms ? r.forms.split("|") : [];
-  const structural = r.type === "grammar_form" || r.type === "contraction_phrase" || r.notes || r.confidence === "0.92" || (r.exampleSentence && !r.exampleChinese);
+  const structural = /待確認|詞性需確認/.test(r.notes || "");
   const content = r.type === "grammar_form" ? "grammar_pattern" : r.type === "spelling_change" ? "spelling_change" : r.type === "irregular_verb" ? "verb_forms" : r.type === "contraction_phrase" ? "contraction" : r.type === "word" ? "word" : "phrase";
   const audio = structural || /[<>=→/]/.test(r.english) ? "" : r.english;
   const answers = forms.length ? forms.join("|") : r.english;
   const modes = r.type === "irregular_verb" ? "en_zh_choice|zh_en_choice|listening|spelling|verb_forms" : structural ? "en_zh_choice|zh_en_choice" : "en_zh_choice|zh_en_choice|listening|spelling";
-  const vals = [r.english,r.chinese,r.pos,r.type,r.cls,r.semester,r.unit,r.page,"","",content,audio,answers,modes,r.exampleSentence || "",r.exampleChinese || (r.exampleSentence ? "教材例句翻譯待補" : ""),r.exampleSentence ? "source_phrase" : "missing",forms[0] || "",forms[1] || "",forms[2] || "",r.type === "contraction_phrase" ? r.english.split("=")[1]?.trim() || "" : "",r.type === "contraction_phrase" ? r.english.split("=")[0]?.trim() || "" : "",r.type === "spelling_change" ? "spelling_change" : "","",r.singularForm || "",r.pluralForm || "","","",structural ? "Yes" : "No",r.notes || "","ocr","way_to_go_12_images_20260913",r.src,r.confidence || "0.96"];
+  const exampleChinese = r.exampleChinese || exampleTranslations[r.exampleSentence] || "";
+  const vals = [r.english,r.chinese,r.pos,r.type,r.cls,r.semester,r.unit,r.page,"","",content,audio,answers,modes,r.exampleSentence || "",exampleChinese,r.exampleSentence ? "source_phrase" : "missing",forms[0] || "",forms[1] || "",forms[2] || "",r.type === "contraction_phrase" ? r.english.split("=")[1]?.trim() || "" : "",r.type === "contraction_phrase" ? r.english.split("=")[0]?.trim() || "" : "",r.type === "spelling_change" ? "spelling_change" : "","",r.singularForm || "",r.pluralForm || "","","",structural ? "Yes" : "No",r.notes || "","ocr","way_to_go_12_images_20260913",r.src,r.confidence || "0.96"];
   return vals.map(esc).join(",");
 })].join("\n") + "\n";
 await writeFile(out, csv, "utf8");
